@@ -1,0 +1,100 @@
+/* Grid container for the puzzle */
+
+/* Existing styles */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* Adjust size as necessary */
+    grid-template-rows: repeat(3, 100px); /* Adjust size as necessary */
+    gap: 5px; /* Space between tiles */
+    margin: 20px auto;
+    max-width: 320px;
+    border: 2px solid #333;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Common styles for all tiles */
+  .tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* White background for tiles */
+    color: #000000; /* Black text for readability */
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  /* Style for the empty tile */
+  .tile.empty {
+    background-color: #000000; /* Black background for the empty space */
+    border: none;
+    cursor: default;
+  }
+  
+  /* Hover effect for movable tiles */
+  .tile:not(.empty):hover {
+    background-color: #d4d4d4; /* Slightly darker shade on hover */
+  }
+  
+  /* Active state for clicked tiles */
+  .tile:active {
+    transform: scale(0.95);
+  }
+  
+  /* Responsive layout adjustments */
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: repeat(3, 70px); /* Adjust size for smaller screens */
+      grid-template-rows: repeat(3, 70px);
+    }
+    .tile {
+      font-size: 18px;
+    }
+  }
+  
+  /* Animation for tile movement */
+  .tile-move {
+    animation: slide 0.2s ease-in-out forwards;
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateX(0) translateY(0);
+    }
+    to {
+      transform: translateX(0) translateY(0);
+    }
+  }
+  
+  /* Flash animation for puzzle completion */
+  @keyframes flash {
+    0% {
+      background-color: #ffffff;
+    }
+    50% {
+      background-color: #00ff00;
+    }
+    100% {
+      background-color: #ffffff;
+    }
+  }
+  
+  .puzzle-complete .tile {
+    animation: flash 1s ease-in-out;
+  }
+  
+  
