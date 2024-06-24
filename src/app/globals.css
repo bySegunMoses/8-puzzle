@@ -13,15 +13,11 @@
 
 * {
   box-sizing: border-box;
-  color: '#fff'
+  color: '#fff';
 }
 
 button {
   outline: none;
-}
-
-p {
-  color: #fff;
 }
 
 .passariello-text-red {
@@ -63,7 +59,7 @@ p {
 body {
   color: #000;
   user-select: none;
-  background: #000000;
+  background-color: #141415;
 }
 
 .mapboxgl-popup-content {

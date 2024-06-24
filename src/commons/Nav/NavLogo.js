@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../assets/images/game-max.png";
+import logo from "../../assets/images/icon.png";
 
 export const NavLogo = () => {
   return (
@@ -11,7 +11,7 @@ export const NavLogo = () => {
         src={logo}
         alt="Game Logo"
         className="text-sm sm:text-sm md:text-md text-white"
-        style={{ color: "#fff", width: "97.2px", height: "48px" }}
+        style={{ color: "#fff", width: "60px", height: "60px" }}
       />
     </Link>
   );
