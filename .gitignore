@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+puzzle-2b57d-firebase-adminsdk-3szc5-26615b8dec.json
 
 # vercel
 .vercel
