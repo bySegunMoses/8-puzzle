@@ -67,6 +67,10 @@ const Puzzle = () => {
     setTimerActive(true);
   }, [difficulty, dispatch]);
 
+  // const handleSolvePuzzle = () => {
+  //   dispatch(solvePuzzle());
+  // };
+
   const handleDragStart = (e, index) => {
     dragItem.current = index;
   };
