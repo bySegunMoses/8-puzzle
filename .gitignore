@@ -35,3 +35,5 @@ puzzle-2b57d-firebase-adminsdk-3szc5-26615b8dec.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+certificates

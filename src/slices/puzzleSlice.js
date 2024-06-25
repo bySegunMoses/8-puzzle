@@ -1,61 +1,57 @@
+// puzzleSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialTiles = [1, 2, 3, 4, 5, 6, 7, 8, 0]; // 0 represents the empty space
-
-const shuffleTiles = (tiles, difficulty) => {
-  const shuffled = [...tiles];
-  const shuffleMoves = {
-    easy: 10,
-    medium: 50,
-    hard: 100,
-  };
-
-  let emptyIndex = shuffled.indexOf(0);
-  const gridSize = 3;
-  const directions = [-1, 1, -gridSize, gridSize]; // Left, Right, Up, Down
-
-  for (let i = 0; i < shuffleMoves[difficulty]; i++) {
-    const validMoves = directions.filter(dir => {
-      const newIndex = emptyIndex + dir;
-      return newIndex >= 0 && newIndex < shuffled.length &&
-             (Math.floor(emptyIndex / gridSize) === Math.floor(newIndex / gridSize) || 
-             (emptyIndex % gridSize) === (newIndex % gridSize));
-    });
-    
-    const move = validMoves[Math.floor(Math.random() * validMoves.length)];
-    const newIndex = emptyIndex + move;
-    [shuffled[emptyIndex], shuffled[newIndex]] = [shuffled[newIndex], shuffled[emptyIndex]];
-    emptyIndex = newIndex;
-  }
-  
-  return shuffled;
+const initialState = {
+  tiles: generateInitialTiles(), // Update to generate a difficult pattern
+  moves: 0,
+  gameOver: false,
 };
 
 const puzzleSlice = createSlice({
   name: 'puzzle',
-  initialState: {
-    tiles: shuffleTiles(initialTiles, 'easy'),
-    emptyIndex: 8, // Initial empty space at the end
-    moves: 0,
-  },
+  initialState,
   reducers: {
     moveTile: (state, action) => {
       const tileIndex = action.payload;
-      if (canMove(tileIndex, state.emptyIndex)) {
-        [state.tiles[tileIndex], state.tiles[state.emptyIndex]] = 
-        [state.tiles[state.emptyIndex], state.tiles[tileIndex]];
-        state.emptyIndex = tileIndex;
+      const emptyIndex = state.tiles.indexOf(0);
+      if (isAdjacent(tileIndex, emptyIndex)) {
+        [state.tiles[tileIndex], state.tiles[emptyIndex]] = [state.tiles[emptyIndex], state.tiles[tileIndex]];
         state.moves += 1;
       }
     },
     resetGame: (state, action) => {
-      const difficulty = action.payload || 'easy';
-      state.tiles = shuffleTiles(initialTiles, difficulty);
-      state.emptyIndex = state.tiles.indexOf(0); // Update the empty index
+      state.tiles = generateInitialTiles(action.payload);
       state.moves = 0;
+      state.gameOver = false;
+    },
+    checkWin: (state) => {
+      if (isSolved(state.tiles)) {
+        state.gameOver = true;
+      }
     },
   },
 });
 
-export const { moveTile, resetGame } = puzzleSlice.actions;
+export const { moveTile, resetGame, checkWin } = puzzleSlice.actions;
 export default puzzleSlice.reducer;
+
+function generateInitialTiles(difficulty) {
+  return [8, 7, 6, 5, 4, 3, 2, 1, 0];
+}
+
+function isSolved(tiles) {
+  return tiles.every((tile, index) => tile === index);
+}
+
+function isAdjacent(index1, index2) {
+  const rowSize = 3;
+  const row1 = Math.floor(index1 / rowSize);
+  const col1 = index1 % rowSize;
+  const row2 = Math.floor(index2 / rowSize);
+  const col2 = index2 % rowSize;
+
+  return (
+    (row1 === row2 && Math.abs(col1 - col2) === 1) ||
+    (col1 === col2 && Math.abs(row1 - row2) === 1)
+  );
+}
