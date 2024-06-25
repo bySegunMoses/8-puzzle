@@ -1,4 +1,4 @@
-import { db } from '../../../../firebase/firebaseAdmin';
+import { db } from '../../../../firebase/firebase';
 import admin from 'firebase-admin';
 import fetch from 'node-fetch';
 
