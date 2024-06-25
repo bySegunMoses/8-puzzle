@@ -1,5 +1,5 @@
 // pages/api/instagramSignIn.js
-import { db } from '../../../../firebase/firebaseAdmin';
+import { db } from '../../../../firebase/firebase';
 import admin from 'firebase-admin';
 import fetch from 'node-fetch';
 
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         // Get Instagram OAuth token and user data
         const { code } = req.query;
         const instagramResponse = await fetch('https://api.instagram.com/oauth/access_token', {
-            method: 'GET',
+            method: 'POST',
             body: new URLSearchParams({
                 client_id: process.env.INSTAGRAM_CLIENT_ID,
                 client_secret: process.env.INSTAGRAM_CLIENT_SECRET,

@@ -1,21 +1,29 @@
+// userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
   name: 'user',
   initialState: {
     username: '',
-    bestTime: null,
+    email: '',
+    userId: '',
+    isAuthenticated: false,
   },
   reducers: {
     setUser: (state, action) => {
       state.username = action.payload.username;
-      state.bestTime = action.payload.bestTime;
+      state.email = action.payload.email;
+      state.userId = action.payload.userId;
+      state.isAuthenticated = true;
     },
-    setBestTime: (state, action) => {
-      state.bestTime = action.payload;
+    clearUser: (state) => {
+      state.username = '';
+      state.email = '';
+      state.userId = '';
+      state.isAuthenticated = false;
     },
   },
 });
 
-export const { setUser, setBestTime } = userSlice.actions;
+export const { setUser, clearUser } = userSlice.actions;
 export default userSlice.reducer;
