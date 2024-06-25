@@ -28,11 +28,15 @@ const puzzleSlice = createSlice({
       if (isSolved(state.tiles)) {
         state.gameOver = true;
       }
+    },
+    solvePuzzle: (state) => {
+      state.tiles = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+      state.gameOver = true; // This can be removed if you don't want to trigger game over
     }
   },
 });
 
-export const { moveTile, resetGame, checkWin } = puzzleSlice.actions;
+export const { moveTile, resetGame, checkWin, solvePuzzle } = puzzleSlice.actions;
 export default puzzleSlice.reducer;
 
 function generateInitialTiles(difficulty) {
