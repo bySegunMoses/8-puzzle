@@ -12,8 +12,8 @@ const Sponsors = () => {
     return (
         <section className='flex flex-col text-white justify-between items-center mt-35 pt-20 pb-20 py-10 md:px-20 lg:px-30 xl:px-50 2xl:px-60 px-7'>
             <div className='flex w-full justify-between items-center mb-10'>
-                <h1 className='text-4xl font-bold'>Sponsors</h1>
-                <Button className={`${buttonStyle} bg-gray-700`}>Explore</Button>
+                <h1 className='text-xl md:text-3xl lg:text-4xl font-bold'>Sponsors</h1>
+                <a href="https://x.com/videra_tech" target="_blank" className={`${buttonStyle} bg-gray-700`}>Explore</a>
             </div>
 
             <div className='flex flex-col lg:flex-row w-full gap-10'>
