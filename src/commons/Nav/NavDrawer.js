@@ -10,7 +10,7 @@ import { navConfig } from './config';
 export const NavDrawer = () => {
   const [open, setOpen] = useState(false);
   const { about, playGame, news, contact, signIn, account } = navConfig.links;
-  const router = useRouter(); // Initialize the useRouter hook
+  const router = useRouter();
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -18,7 +18,7 @@ export const NavDrawer = () => {
 
   const handleLinkClick = (route) => {
     router.push(route); // Use useRouter to navigate to the specified route
-    handleDrawerClose(); // Close the drawer after navigation
+    handleDrawerClose();
   };
 
   return (
@@ -33,7 +33,7 @@ export const NavDrawer = () => {
         onClose={handleDrawerClose}
         open={open}
         key={'left'}
-        className="bg-[#e50500] flex flex-col"
+        className="bg-blue-700 flex flex-col"
       >
         <div className="flex flex-col justify-between grow ">
           <div className="flex flex-col  mt-10">
@@ -41,7 +41,7 @@ export const NavDrawer = () => {
               className="flex focus:outline-none flex-row items-center"
               onClick={() => handleLinkClick(about.route)}
             >
-              <MdOutlineFastfood className="text-red-500 mr-5" size={24} />
+              <MdOutlineFastfood className="text-blue-700 mr-5" size={24} />
               <p className="font-arial text-lg font-semibold text-gray-700">
                 {about.title}
               </p>
@@ -50,7 +50,7 @@ export const NavDrawer = () => {
               className="flex hover:no-underline flex-row items-center  mt-5"
               onClick={() => handleLinkClick(catering.route)}
             >
-              <GiFoodTruck className="text-red-500 mr-5" size={24} />
+              <GiFoodTruck className="text-blue-700 mr-5" size={24} />
               <p className="font-arial text-lg font-semibold text-gray-700">
                 {playGame.title}
               </p>
@@ -59,7 +59,7 @@ export const NavDrawer = () => {
               className="flex focus:outline-none flex-row items-center mt-5"
               onClick={() => handleLinkClick(select_location.route)}
             >
-              <FaMapMarker className="text-red-500 mr-5" size={24} />
+              <FaMapMarker className="text-blue-700 mr-5" size={24} />
               <p className="font-arial text-lg font-semibold text-gray-700">
                 {news.title}
               </p>
@@ -68,7 +68,7 @@ export const NavDrawer = () => {
               className="flex focus:outline-none focus:outline-none flex-row items-center mt-5"
               onClick={() => handleLinkClick(account.route)}
             >
-              <FaUserCircle className="text-red-500 mr-5" size={24} />
+              <FaUserCircle className="text-blue-700 mr-5" size={24} />
               <p className="font-arial text-lg font-semibold text-gray-700">
                 {account.title}
               </p>

@@ -12,30 +12,32 @@ const HeroSection = () => {
 
     const handleNavigate = (url) => {
         navigate.push(url)
-      }
+    }
 
-    const buttonStyle = "hover:bg-[#111E30] text-white px-6 py-4 justify-center space-x-4 items-center rounded-xl"
+    const buttonStyle = "hover:bg-[#111E30] text-white px-6 py-4 justify-center space-x-4 items-center rounded-xl";
+
     return (
-        <section className='relative flex justify-center items-center mt-35 pt-20 pb-20 py-10 md:px-20 lg:px-30 xl:px-50 2xl:px-60 px-7'>
-            <div className='space-y-20 w-[50%]'>
-                <div className='space-y-4'>
-                    <p className='text-brandColor'>Discover Games That You Will Love</p>
-                    <h1 className='text-6xl text-white font-bold'>Read About Games That You Enjoy</h1>
-                </div>
-                <div onClick={() => {handleNavigate('/dashboard')}} className={`inline-flex text-lg ${buttonStyle} bg-blue-700 font-medium`}>
-                    <Button>Start Exploring</Button>
-                    <FaArrowRight className='text-sm text-white bg-none' />
-                </div>
-            </div>
-            <div className='w-[50%]'>
+        <section className='relative flex flex-col lg:flex-row justify-center items-center mt-35 pt-20 pb-20 py-10 md:px-20 lg:px-30 xl:px-50 2xl:px-60 px-7'>
+            <div className='w-full lg:w-1/2'>
                 <Image 
                     priority
                     src={dice}
                     alt="Game Zone"
+                    className="w-full h-auto"
                 />
             </div>
+            <div className='space-y-20 w-full lg:w-1/2 mt-10 lg:mt-0'>
+                <div className='space-y-4'>
+                    <p className='text-brandColor'>Follow us, sign up, top the leaderboard, win $5!</p>
+                    <h1 className='text-6xl text-white font-bold'>Puzzle Your Way to $5!</h1>
+                </div>
+                <div onClick={() => {handleNavigate('/dashboard')}} className={`inline-flex text-lg ${buttonStyle} bg-blue-700 font-medium`}>
+                    <Button>Claim Your Spot</Button>
+                    <FaArrowRight className='text-sm text-white bg-none' />
+                </div>
+            </div>
         </section>
-    )
+    );
 }
 
 export default HeroSection;

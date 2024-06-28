@@ -59,7 +59,6 @@ const Navbar = () => {
         </nav>
         );
     }
-
     return null;
     };
 

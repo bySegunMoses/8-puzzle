@@ -5,7 +5,6 @@ import RankCard from './RankCard';
 import { db } from '../../../firebase/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
-// Mock data with images for demonstration
 export const mockPlayers = [
     { id: 1, image: "https://i.pinimg.com/564x/56/74/f4/5674f4b6491cea7cc3c5d34e84bf1a71.jpg" },
     { id: 2, image: "https://i.pinimg.com/564x/18/42/05/184205f42f11adfb52884ccb6878a339.jpg" },
@@ -17,6 +16,7 @@ export const mockPlayers = [
 
 const LeaderBoard = () => {
     const [players, setPlayers] = useState([]);
+    const buttonStyle = "hover:bg-primary text-white py-2 px-4 justify-center space-x-4 items-center rounded-xl";
 
     useEffect(() => {
         const fetchLeaderboard = async () => {
@@ -36,7 +36,7 @@ const LeaderBoard = () => {
                         return a.totalMoves - b.totalMoves;
                     }
                     return timeA - timeB;
-                }).slice(0, 6); // Take the top 6 players
+                }).slice(0, 6);
 
                 setPlayers(sortedPlayers);
             } catch (error) {
@@ -50,13 +50,13 @@ const LeaderBoard = () => {
     return (
         <section className='flex flex-col text-white justify-between items-center mt-35 pt-20 pb-20 py-10 md:px-20 lg:px-30 xl:px-50 2xl:px-60 px-7'>
             <div className='flex w-full justify-between items-center mb-10'>
-                <h1 className='text-4xl font-bold'>Current LeaderBoard</h1>
-                <Button className="hover:bg-primary text-white py-2 px-4 justify-center space-x-4 items-center rounded-xl bg-gray-700">
+                <h1 className='text-xl md:text-3xl lg:text-4xl font-bold whitespace-nowrap overflow-hidden truncate'>Current LeaderBoard</h1>
+                <Button className={`${buttonStyle} bg-gray-700 whitespace-nowrap overflow-hidden truncate`}>
                     See All
                 </Button>
             </div>
 
-            <div className="flex flex-wrap w-full justify-between items-center gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start gap-4">
                 {players.length === 0 ? (
                     Array(6).fill(0).map((_, index) => (
                         <RankCard key={index} inactive={true} />
@@ -65,10 +65,10 @@ const LeaderBoard = () => {
                     players.map((player, index) => (
                         <RankCard
                             key={player.id}
-                            name={player.username} // Assuming username is fetched from Firebase data
+                            name={player.username}
                             completionTime={`${player.totalCompletionTime.minutes}m ${player.totalCompletionTime.seconds}s`}
                             moves={player.totalMoves}
-                            path={mockPlayers[index].image} // Assigning image based on sorted rank
+                            path={mockPlayers[index].image}
                             inactive={false}
                             rank={index + 1}
                         />
