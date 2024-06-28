@@ -10,7 +10,7 @@ import { navConfig } from './config';
 export const NavDrawer = () => {
   const [open, setOpen] = useState(false);
   const { about, playGame, news, contact, signIn, account } = navConfig.links;
-  const router = useRouter(); // Initialize the useRouter hook
+  const router = useRouter();
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -18,7 +18,7 @@ export const NavDrawer = () => {
 
   const handleLinkClick = (route) => {
     router.push(route); // Use useRouter to navigate to the specified route
-    handleDrawerClose(); // Close the drawer after navigation
+    handleDrawerClose();
   };
 
   return (
