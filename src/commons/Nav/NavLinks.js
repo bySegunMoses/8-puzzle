@@ -15,17 +15,22 @@ export const NavLinks = () => {
 
   return (
     <div className="font-swissCondensed font-black text-sm md:text-md whitespace-nowrap h-10 items-center justify-between flex-row md:flex hidden">
+
+      <button onClick={() => {handleNavigate('/')}} className="text-md h-9 items-center justify-center mx-5 ">
+        <p className={`${textColor}`}>{"Home"}</p>
+      </button>
+
       <button onClick={() => {handleNavigate(about.route)}} className="text-md h-9 items-center justify-center mx-5 ">
         <p className={`${textColor}`}>{about.title}</p>
       </button>
 
-      <button onClick={() => {handleNavigate(playGame.route)}} className="text-md h-9 items-center justify-center mx-5 ">
+      {/* <button onClick={() => {handleNavigate(playGame.route)}} className="text-md h-9 items-center justify-center mx-5 ">
         <p className={`${textColor}`}>{playGame.title}</p>
       </button>
 
       <button onClick={() => {handleNavigate(news.route)}} className="text-md h-9 items-center justify-center mx-5 ">
         <p className={`${textColor}`}>{news.title}</p>
-      </button>
+      </button> */}
     </div>
   );
 };

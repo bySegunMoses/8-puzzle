@@ -2,9 +2,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  tiles: generateInitialTiles(), // Update to generate a difficult pattern
+  tiles: generateInitialTiles(),
   moves: 0,
   gameOver: false,
+  timer: { minutes: 0, seconds: 0, milliseconds: 0 }, // Ensure timer is initialized
+  timerActive: false,
 };
 
 const puzzleSlice = createSlice({
@@ -23,20 +25,28 @@ const puzzleSlice = createSlice({
       state.tiles = generateInitialTiles(action.payload);
       state.moves = 0;
       state.gameOver = false;
+      state.timer = { minutes: 0, seconds: 0, milliseconds: 0 }; // Reset timer on game reset
+      state.timerActive = true;
     },
     checkWin: (state) => {
       if (isSolved(state.tiles)) {
         state.gameOver = true;
+        state.timerActive = false;
       }
+    },
+    setTimer: (state, action) => {
+      state.timer = action.payload;
+    },
+    setTimerActive: (state, action) => {
+      state.timerActive = action.payload;
     }
   },
 });
 
-export const { moveTile, resetGame, checkWin } = puzzleSlice.actions;
+export const { moveTile, resetGame, checkWin, setTimer, setTimerActive } = puzzleSlice.actions;
 export default puzzleSlice.reducer;
 
 function generateInitialTiles(difficulty) {
-  // Generate tiles in a difficult configuration
   return [8, 6, 7, 2, 5, 4, 3, 0, 1];
 }
 

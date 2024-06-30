@@ -17,7 +17,7 @@ const RankCard = ({ name, completionTime, moves, path, inactive, rank }) => {
         <div className={`relative flex flex-col text-white space-y-5 items-center justify-start mb-10 w-44 h-64 ${inactive ? 'opacity-50 grayscale' : ''}`}>
             {/* Rank Badge */}
             <div className="absolute top-0 left-0 mt-2 ml-2 flex items-center justify-center w-8 h-8">
-                <div className={`relative flex items-center z-20 justify-center w-full h-full text-xs font-bold rounded-full`}>
+                <div className={`relative flex items-center z-10 justify-center w-full h-full text-xs font-bold rounded-full`}>
                     <LuBadge size={24} className={`absolute text-[${getBadgeColor()}]`} />
                     <p className={`absolute text-[${getBadgeColor()}]`}>{rank}</p>
                 </div>

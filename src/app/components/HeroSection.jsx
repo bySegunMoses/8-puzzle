@@ -29,8 +29,8 @@ const HeroSection = () => {
             </div>
             <div className='space-y-20 w-full lg:w-1/2 mt-10 lg:mt-0'>
                 <div className='space-y-4'>
-                    <p className='text-brandColor'>Follow us, sign up, top the leaderboard, win $5!</p>
-                    <h1 className='text-6xl text-white font-bold'>Puzzle Your Way to $5!</h1>
+                    <p className='text-brandColor'>Follow us, sign up, top the leaderboard, win prize.</p>
+                    <h1 className='text-6xl text-white font-bold'>Puzzle Your Way to N5,000!</h1>
                 </div>
                 <Link href={"/dashboard"} className={`inline-flex text-lg ${buttonStyle} bg-blue-700 font-medium`}>
                     <p>Claim Your Spot</p>
