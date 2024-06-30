@@ -21,8 +21,9 @@ const Puzzle = () => {
 
   useEffect(() => {
     // Start the timer when the component mounts
+    dispatch(resetGame(difficulty))
     setTimerActive(true);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (gameOver) {

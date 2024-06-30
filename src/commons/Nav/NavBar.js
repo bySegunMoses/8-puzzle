@@ -38,7 +38,7 @@ const Navbar = () => {
                 <NavLogo />
             </div>
 
-            <div className="flex flex-1 justify-around items-center">
+            <div className="flex flex-1 justify-around">
                 <NavLinks />
                 <div className="flex md:hidden">
                 <NavLogo />
