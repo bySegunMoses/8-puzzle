@@ -10,7 +10,15 @@ const links = {
     news: {
         title: `News`,
         route: '/news'
-    }, 
+    },
+    login: {
+        title: `Log In`,
+        route: '/login'
+    },
+    signup: {
+        title: `Sign Up`,
+        route: '/signup'
+    },
     contact: {
         title: "Contact us",
         route: "/contact-us"

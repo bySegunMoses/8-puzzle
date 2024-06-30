@@ -1,8 +1,9 @@
+//SignUpForm
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth, db } from '../../../firebase/firebase';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { doc, setDoc, getDoc, query, where, collection, getDocs } from 'firebase/firestore';
+import { doc, setDoc, getDocs, query, where, collection } from 'firebase/firestore';
 import { Input, Button, Spacer } from '@nextui-org/react';
 
 const SignUpForm = () => {
@@ -14,7 +15,6 @@ const SignUpForm = () => {
   const [usernameValid, setUsernameValid] = useState(null);
   const [usernameCheckInProgress, setUsernameCheckInProgress] = useState(false);
   const router = useRouter();
-
 
   useEffect(() => {
     const checkUsername = async () => {
@@ -36,7 +36,7 @@ const SignUpForm = () => {
       checkUsername();
     }, 300);
 
-    return () => clearTimeout(debounceTimer); 
+    return () => clearTimeout(debounceTimer);
   }, [username]);
 
   const handleSignUp = async (e) => {
@@ -60,7 +60,6 @@ const SignUpForm = () => {
       // Add user to Firestore
       await setDoc(doc(collection(db, 'Users')), {
         uid: user.uid,
-        userId: user.uid,
         email: email,
         username: username,
         emailVerified: false,
@@ -74,7 +73,21 @@ const SignUpForm = () => {
       // Navigate to the login page
       router.push('/login');
     } catch (err) {
-      setError(err.message);
+      // Customize error message based on error code
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          setError('This email is already in use. Try another email or login.');
+          break;
+        case 'auth/invalid-email':
+          setError('Invalid email address. Please enter a valid email.');
+          break;
+        case 'auth/weak-password':
+          setError('Password is too weak. Please enter a stronger password.');
+          break;
+        default:
+          setError('An error occurred. Please try again.');
+          break;
+      }
     }
 
     setLoading(false);
@@ -99,7 +112,7 @@ const SignUpForm = () => {
         className="mb-4"
       />
 
-      {/* Password Input (Corrected) */}
+      {/* Password Input */}
       <Input
         type="password"
         label="Password"
@@ -143,6 +156,11 @@ const SignUpForm = () => {
       </Button>
 
       <Spacer y={1} />
+
+      {/* Already Have an Account */}
+      <p className='text-center text-sm mt-4'>
+        Already have an account? <a href="/login" className='text-blue-500'>Login</a>
+      </p>
     </form>
   );
 };
