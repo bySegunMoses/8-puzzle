@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../../../../../Downloads/hngx-web"
+		},
+		{
+			"path": "../HNGx/nextjs-blog-page"
 		}
 	]
 }
